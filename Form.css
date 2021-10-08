@@ -1,0 +1,33 @@
+.items{
+  list-style-type: none;
+}
+
+.item{
+  padding: 8px;
+  margin: 5px;
+  background-color: hsl(0, 0%, 90%);
+}
+
+._form{
+  padding: 8px;
+  margin: 5px;
+  border: 1px solid black;
+  background-color: white;
+}
+
+.but{
+  color: white;
+  padding: 5px 138px;
+  margin: 5px 2px;
+  background-color: black;
+  border: 1px solid black;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.enter{
+  text-align:center;
+  padding: ;
+  margin: 5px 2px;
+  cursor: pointer;
+}

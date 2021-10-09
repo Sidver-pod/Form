@@ -51,7 +51,7 @@ const emailInput = document.querySelector('#email');
 
 /*-------------------------STORING IN [LOCAL STORAGE]-------------------------*/
 
-var count = 1; //initialized for the very first user (helps make unique KEYS)
+//NOT NEEDED! /*var count = 1; //initialized for the very first user (helps make unique KEYS)*/
 //METHOD #1
 // btn.addEventListener('click', (e) => {
 //   var uniqueName = 'name' + count;
@@ -72,14 +72,30 @@ btn.addEventListener('click', (e) => {
     email: userEmail
   }; //object
   
-  let uniqueUser = 'user' + count; //KEY
+  let uniqueUser = 'user' + emailInput.value; //***UPDATED UNIQUE USER ID /*count; //KEY*/
   let myObj_serialized = JSON.stringify(myObj); //VALUE (converts to a 'string')
   localStorage.setItem(uniqueUser, myObj_serialized);
-  count++; //update
+  //***NOT NEEDED! /*count++; //update*/
   myObj_deserialized = JSON.parse(localStorage.getItem(uniqueUser));
   console.log(myObj_deserialized);
 });
 
 //READING SAVED DATA FROM LOCAL STORAGE INTO THE FRONTEND
-nameInput.value = JSON.parse(localStorage.getItem('user1')).name;
-emailInput.value = JSON.parse(localStorage.getItem('user1')).email;
+nameInput.value = JSON.parse(localStorage.getItem('usersid@gmail.com')).name;
+emailInput.value = JSON.parse(localStorage.getItem('usersid@gmail.com')).email;
+
+//**[UPDATED] WITH 'DOMContentLoaded' event (runs right after the document is ready; does not wait for CSS, Images etc. to load!)
+document.addEventListener('DOMContentLoaded', () => {
+  /*READING KEYS - PRINTING DETAILS*/
+  var ul = document.querySelector('ul');
+  
+  //looping through keys
+  Object.keys(localStorage).forEach((key) => {
+    var stringified_Value = localStorage.getItem(key);
+    var parsed_Value = JSON.parse(stringified_Value);
+
+    var li = document.createElement('li');
+    li.innerText = parsed_Value.name + " | " + parsed_Value.email;
+    ul.appendChild(li);
+  }); //for loop ends here
+}); //DOMContentLoaded ends here
